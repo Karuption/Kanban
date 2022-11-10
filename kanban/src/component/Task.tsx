@@ -1,18 +1,31 @@
-import React, { FC, useState } from "react";
-import { Card } from "antd";
+import React, { FC, SetStateAction, useState } from "react";
+import { Card, Drawer } from "antd";
 import { Lane } from "./LaneComponent";
 
 const TaskItem = ({ task }: { task: Task }) => {
+  const [expanded, setExpanded] = useState(false);
   return (
-    <Card
-      title={task.Title}
-      key={task.id}
-      hoverable
-      draggable="true"
-      onDragOverCapture={(e) => console.log(e)}
-    >
-      {task.Description}
-    </Card>
+    <div>
+      <Card
+        title={task.Title}
+        key={task.id}
+        hoverable
+        draggable="true"
+        onDragOverCapture={(e) => console.log(e)}
+        onClick={() => setExpanded(!expanded)}
+      >
+        {task.Description}
+      </Card>
+      <Drawer
+        title={task.Title}
+        placement="right"
+        closable={true}
+        onClose={() => setExpanded(false)}
+        visible={expanded}
+      >
+        {task.Description}
+      </Drawer>
+    </div>
   );
 };
 

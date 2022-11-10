@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { List, Card, Input, Form, Popover, Button, Layout } from "antd";
+import { List, Input, Form, Popover, Button, Modal } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
 import "../App.css";
 import TaskItem, { Task } from "./Task";
@@ -89,11 +89,10 @@ const LaneComponent: FC<LaneProps> = ({ lane }: LaneProps) => {
   );
 };
 
-const handleTaskAdd: FC<any> = (
+const handleTaskAdd: any = (
   { taskName }: { taskName: string },
   { lane }: { lane: Lane }
 ) => {
-  console.log("adding task " + taskName + " to lane " + lane.Title);
   lane.Tasks.push({
     id: "1",
     laneID: lane.id,
@@ -110,7 +109,6 @@ const handleTaskAdd: FC<any> = (
     TimeEntries: [],
     Comments: [],
   });
-  return <p> {taskName}</p>;
 };
 
 export interface LaneProps {
